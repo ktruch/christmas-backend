@@ -14,7 +14,7 @@ const client = new MongoClient(uri, {
 });
 
 const corsOptions = {
-  origin: 'https://ktruch.github.io',
+  origin: '*',
   optionsSuccessStatus: 200
 }
 
@@ -22,7 +22,10 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.use(express.json());
 
-app.get("/", (req, res) => res.send("Christmas on Vercel"));
+app.get("/", (req, res) =>{ 
+  console.log("Test log");
+  log.info("Test log");
+  res.send("Christmas on Vercel")});
 
 app.get("/reset", async (req, res) => {
   try {
@@ -44,7 +47,6 @@ app.get('/names', async (req, res) => {
     const collection = database.collection("userData");
     const names = await collection.find({ draw: null }, { projection: { id: 1, name: 1, draw: 1, _id: 0} }).toArray();
     console.log("names - server", names);
-    res.header("Access-Control-Allow-Origin", '*'); 
     res.json(names);
   }catch (error) {
     console.error(error);
@@ -61,7 +63,6 @@ app.get('/people_left', async (req, res) => {
     const chosenIds = names.map(name => name.draw);
     const namesLeft = names.filter(name => !chosenIds.includes(name.id));
     console.log("namesLeft - server", namesLeft);
-    res.header("Access-Control-Allow-Origin", '*'); 
     res.json(namesLeft);
   } catch (error) {
     console.error(error);
