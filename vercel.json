@@ -5,10 +5,7 @@
       "source": "/(.*)", 
       "destination": "/api" 
       }],
-  "functions": 
-  {
-    "api/**": {
-      "regions": ["fra1"]
-    }
-  }
+
+  "regions": ["fra1"]
+
 }
