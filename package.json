@@ -6,5 +6,13 @@
   },
   "scripts": {
     "start": "node db_service.js"
-  }
+  },
+  "name": "christmas-backend",
+  "version": "1.0.0",
+  "main": "db_service.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
