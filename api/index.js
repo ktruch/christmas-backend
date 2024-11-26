@@ -40,6 +40,7 @@ app.get('/names', async (req, res) => {
     const collection = database.collection("userData");
     const names = await collection.find({ draw: null }, { projection: { id: 1, name: 1, draw: 1, _id: 0} }).toArray();
     console.log("names - server", names);
+    res.header("Access-Control-Allow-Origin", '*'); 
     res.json(names);
   }catch (error) {
     console.error(error);
@@ -56,6 +57,7 @@ app.get('/people_left', async (req, res) => {
     const chosenIds = names.map(name => name.draw);
     const namesLeft = names.filter(name => !chosenIds.includes(name.id));
     console.log("namesLeft - server", namesLeft);
+    res.header("Access-Control-Allow-Origin", '*'); 
     res.json(namesLeft);
   } catch (error) {
     console.error(error);
@@ -74,6 +76,7 @@ app.post('/draw', async (req, res) => {
       return res.status(400).json({ error: 'Missing id or drawnId' });
     }
     const updatedNames = await collection.updateOne({ id: parseInt(id) }, { $set: { draw: parseInt(drawnId) } });
+    res.header("Access-Control-Allow-Origin", '*'); 
     res.json(updatedNames);
   } catch (error) {
     console.error(error);
