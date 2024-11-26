@@ -42,9 +42,16 @@ app.get("/reset", async (req, res) => {
 
 app.get('/names', async (req, res) => {
   try {
+    console.log("Before connect");
     await client.connect();
+    console.log("Before db");
+
     const database = client.db("christmas_draw");
+    console.log("Before collection");
+
     const collection = database.collection("userData");
+    console.log("Before query");
+
     const names = await collection.find({ draw: null }, { projection: { id: 1, name: 1, draw: 1, _id: 0} }).toArray();
     console.log("names - server", names);
     res.json(names);
