@@ -13,7 +13,9 @@ const client = new MongoClient(uri, {
   }
 });
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 app.use(express.json());
 
 app.get("/", (req, res) => res.send("Christmas on Vercel"));

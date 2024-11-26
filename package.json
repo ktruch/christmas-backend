@@ -4,9 +4,7 @@
     "express": "^4.21.1",
     "mongodb": "^6.11.0"
   },
-  "scripts": {
-    "start": "node db_service.js"
-  },
+
   "name": "christmas-backend",
   "version": "1.0.0",
   "main": "db_service.js",
