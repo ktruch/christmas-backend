@@ -13,9 +13,13 @@ const client = new MongoClient(uri, {
   }
 });
 
-app.use(cors({
-  origin: 'https://ktruch.github.io' // Replace with your frontend origin
-}));
+const corsOptions = {
+  origin: 'https://ktruch.github.io',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req, res) => res.send("Christmas on Vercel"));
