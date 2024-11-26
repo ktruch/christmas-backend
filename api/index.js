@@ -14,7 +14,7 @@ const client = new MongoClient(uri, {
 });
 
 app.use(cors({
-  origin: '*'
+  origin: 'https://ktruch.github.io' // Replace with your frontend origin
 }));
 app.use(express.json());
 
