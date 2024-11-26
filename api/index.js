@@ -24,8 +24,8 @@ app.use(express.json());
 
 app.get("/", (req, res) =>{ 
   console.log("Test log");
-  log.info("Test log");
-  res.send("Christmas on Vercel")});
+  res.send("Christmas on Vercel")
+});
 
 app.get("/reset", async (req, res) => {
   try {
